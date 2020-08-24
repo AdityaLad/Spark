@@ -1,4 +1,4 @@
-package com.rsa.spark;
+package com.open.spark;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
