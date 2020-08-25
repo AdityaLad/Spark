@@ -17,7 +17,7 @@ public class BRO {
 				.option("header", "true").csv("resources/network-datasets/notice.csv");
 		df.printSchema();
 		
-		//multiple pattern matching using rlike
+		//multiple pattern matching
 		df.filter(col("note").rlike("(reverse-shell|Password_Guessing)")).show(2000,false);
 		
 		//or individual

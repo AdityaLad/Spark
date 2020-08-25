@@ -4,8 +4,10 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.SparkSession;
 
+import com.open.malware.Apt1;
+import com.open.malware.Zeus;
 import com.open.network.BRO;
-import com.open.network.C99Conn;
+import com.open.network.Connections;
 import com.open.network.DomainTransfer;
 import com.open.network.FTP;
 import com.open.network.HTTP;
@@ -49,34 +51,40 @@ public class App
     .config(conf).getOrCreate();
     
     SSH ssh = new SSH();
-    ssh.process(spark);
+    //ssh.process(spark);
     
     FTP ftp = new FTP();
-    ftp.process(spark);
+    //ftp.process(spark);
     
     SMTP smtp = new SMTP();
-    smtp.process(spark);
+    //smtp.process(spark);
     
     BRO bro = new BRO();
-    bro.process(spark);
+    //bro.process(spark);
     
     HTTP http = new HTTP();
-    http.process(spark);
+    //http.process(spark);
     
     Squid squid = new Squid();
-    squid.process(spark);
+    //squid.process(spark);
     
     Auth auth = new Auth();
-    auth.process(spark);
+    //auth.process(spark);
     
     DomainTransfer domainTransfer = new DomainTransfer();
-    domainTransfer.process(spark);
+    //domainTransfer.process(spark);
     
-    C99Conn conn = new C99Conn();
-    conn.process(spark);
+    Connections conn = new Connections();
+    //conn.process(spark);
     
     Honeypot honeypot = new Honeypot();
-    honeypot.process(spark);
+    //honeypot.process(spark);
+    
+    Zeus zeus = new Zeus();
+    zeus.process(spark);
+    
+    Apt1 apt1 = new Apt1();
+    apt1.process(spark);
     
     sc.stop();
     }
