@@ -21,9 +21,8 @@ public class Connections {
 				.option("delimiter", "\t")
 				.option("header", false)
 				.csv("resources/network-datasets/conn.log.gz");
-		df.printSchema();
 		
-		/*Set a few header names, as there is no header in the log file*/
+		//Set a few header names, as there is no header in the log file
 		df = df.withColumnRenamed("_c0", "ts")
 				.withColumnRenamed("_c1", "uid")
 				.withColumnRenamed("_c2", "id.orig_h")
@@ -48,10 +47,10 @@ public class Connections {
 		
 		/*Convert epoch to a human readable timestamp*/
 		df = df.withColumn("ts", from_unixtime(col("ts"),"MM-dd-yyyy HH:mm:ss"));
-		df.show();	
 		
 		/* get a list of top origin ips who are sending max traffic sorted by protocol*/
-		df.groupBy(col("`id.orig_h`").as("orig_src"),col("proto").as("nw_proto"),col("service").as("app_service")).count().as("count").orderBy(col("count").desc()).show();
+		df.groupBy(col("`id.orig_h`").as("orig_src"),col("proto").as("nw_proto"),col("service").as("app_service")).count().as("count")
+		.orderBy(col("count").desc()).show();
 		
 		/* get ssl connections not happening over server port 443*/
 		df.filter(col("service").like("ssl")).filter(col("`id.resp_p`").notEqual("443")).show();
