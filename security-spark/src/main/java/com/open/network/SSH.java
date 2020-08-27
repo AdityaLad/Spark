@@ -18,7 +18,7 @@ public class SSH {
 		df.show();	
 		//Usecase 1 - count by who is making the max requests
 		
-		//if the column name has ".", it throws an error, small hack is to use backticks or renaamed the columns
+		//if the column name has ".", it throws an error, small hack is to use backticks or renamed the columns
 		//1
 		df.groupBy("`id.orig_h`").count().alias("count").orderBy(col("count").desc()).show();
 		
